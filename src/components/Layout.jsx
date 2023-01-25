@@ -1,7 +1,11 @@
 import React from "react";
 
-const Layout = () => {
-  return <div>Layout</div>;
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Layout>{children}</Layout>
+    </>
+  );
 };
 
 export default Layout;

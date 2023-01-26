@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const ChatList = () => {
-  return <div>ChatList</div>;
+  return (
+    <>
+      <Navbar />
+      <div>ChatList</div>;
+    </>
+  );
 };
 
 export default ChatList;

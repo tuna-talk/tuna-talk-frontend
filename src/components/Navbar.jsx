@@ -1,60 +1,84 @@
-import React from "react";
-import {
-  Sidebar,
-  InputItem,
-  DropdownItem,
-  Icon,
-  Item,
-  Logo,
-  LogoText,
-} from "react-sidebar-ui";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { BsFillChatFill } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 
 const Navbar = () => {
-  return (
-    <div>
-      <Sidebar bgColor="black" isCollapsed={false}>
-        <Logo
-          image="https://media2.giphy.com/media/eNAsjO55tPbgaor7ma/source.gif"
-          imageName="react logo"
-        />
-        <LogoText>React Sidebar UI</LogoText>
-        <DropdownItem values={["First", "Second", "Third"]} bgColor={"black"}>
-          Menu
-        </DropdownItem>
+  const navigate = useNavigate();
 
-        <Item bgColor="black">
-          <Icon>
-            <i className="fas fa-home" />
-          </Icon>
-          Home
-        </Item>
-        <Item bgColor="black">
-          <Icon>
-            <i className="fas fa-info" />
-          </Icon>
-          About
-        </Item>
-        <Item bgColor="black">
-          <Icon>
-            <i className="fas fa-sitemap" />
-          </Icon>
-          My Website
-        </Item>
-        <Item bgColor="black">
-          <Icon>
-            <i className="far fa-address-book" />
-          </Icon>
-          Contacts
-        </Item>
-        <Item bgColor="black">
-          <Icon>
-            <i className="fas fa-rss-square" />
-          </Icon>
-          Blog
-        </Item>
-        <InputItem type="text" placeholder={"Search..."} />
-      </Sidebar>
-    </div>
+  return (
+    <NavContainer>
+      <Fbutton
+        onClick={() => {
+          navigate("/friendsList");
+        }}
+      >
+        <BsFillChatFill />
+      </Fbutton>
+      <Cbutton
+        onClick={() => {
+          navigate("/chatList");
+        }}
+      >
+        <BsFillPersonFill />
+      </Cbutton>
+    </NavContainer>
   );
 };
+
 export default Navbar;
+
+const Fbutton = styled.button`
+  font-size: 25px;
+  color: #c0c0c0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  &:hover {
+    color: #868686;
+  }
+  &:active {
+    color: #000;
+  }
+`;
+const Cbutton = styled.button`
+  font-size: 23px;
+  color: #c0c0c0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-bottom: 10px;
+  &:hover {
+    color: #868686;
+  }
+  &:active {
+    color: #000 !important;
+  }
+`;
+const Lbutton = styled.button`
+  font-size: 25px;
+  color: #c0c0c0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-bottom: 10px;
+  &:hover {
+    color: #868686;
+  }
+`;
+
+const NavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ececec;
+  height: 100vh;
+  width: 100px;
+  box-shadow: 2px 2px 0px 0px #cacaca;
+`;

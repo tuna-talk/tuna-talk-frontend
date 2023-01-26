@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const FriendsList = () => {
-  return <div>FriendsList</div>;
+  return (
+    <>
+      <Navbar />
+      <div>FriendsList</div>;
+    </>
+  );
 };
 
 export default FriendsList;

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Button from "./button/Button";
 import { BsFillChatFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 
@@ -9,69 +10,37 @@ const Navbar = () => {
 
   return (
     <NavContainer>
-      <Fbutton
+      <Button
+        fs="30px"
+        color="#c0c0c0"
+        bc="transparent"
+        hoverC="#868686"
+        activeC="#000"
+        margin="30px 0px 10px 0px"
         onClick={() => {
           navigate("/friendsList");
         }}
       >
-        <BsFillChatFill />
-      </Fbutton>
-      <Cbutton
+        <BsFillPersonFill />
+      </Button>
+      <Button
+        fs="25px"
+        color="#c0c0c0"
+        bc="transparent"
+        hoverC="#868686"
+        activeC="#000"
+        margin="0px 0px 10px 0px"
         onClick={() => {
           navigate("/chatList");
         }}
       >
-        <BsFillPersonFill />
-      </Cbutton>
+        <BsFillChatFill />
+      </Button>
     </NavContainer>
   );
 };
 
 export default Navbar;
-
-const Fbutton = styled.button`
-  font-size: 25px;
-  color: #c0c0c0;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  &:hover {
-    color: #868686;
-  }
-  &:active {
-    color: #000;
-  }
-`;
-const Cbutton = styled.button`
-  font-size: 23px;
-  color: #c0c0c0;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin-bottom: 10px;
-  &:hover {
-    color: #868686;
-  }
-  &:active {
-    color: #000 !important;
-  }
-`;
-const Lbutton = styled.button`
-  font-size: 25px;
-  color: #c0c0c0;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin-bottom: 10px;
-  &:hover {
-    color: #868686;
-  }
-`;
 
 const NavContainer = styled.div`
   display: flex;
@@ -80,5 +49,6 @@ const NavContainer = styled.div`
   background-color: #ececec;
   height: 100vh;
   width: 100px;
-  box-shadow: 2px 2px 0px 0px #cacaca;
+  box-shadow: 2px 2px #cacaca;
+  float: left;
 `;

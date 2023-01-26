@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-
 const GlobalStyle = createGlobalStyle`
 
   * {
@@ -14,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     overflow: hidden;
   }
-
   html {
     font-size: 10px;
   }

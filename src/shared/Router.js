@@ -10,7 +10,7 @@ import GlobalStyle from "./GlocalStyle";
 const Router = () => {
   return (
     <BrowserRouter>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/friendsList" element={<FriendsList />} />

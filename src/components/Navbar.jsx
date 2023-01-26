@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { BsFillChatFill } from "react-icons/bs";
-import { BsFillPersonFill } from "react-icons/bs";
+// import { BsFillChatFill } from "react-icons/bs";
+// import { BsFillPersonFill } from "react-icons/bs";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,14 +14,14 @@ const Navbar = () => {
           navigate("/friendsList");
         }}
       >
-        <BsFillChatFill />
+        {/* <BsFillChatFill /> */}
       </Fbutton>
       <Cbutton
         onClick={() => {
           navigate("/chatList");
         }}
       >
-        <BsFillPersonFill />
+        {/* <BsFillPersonFill /> */}
       </Cbutton>
     </NavContainer>
   );

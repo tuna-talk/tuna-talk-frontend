@@ -26,7 +26,8 @@ const SignUp = () => {
     }
 
     const result = await userApis.signUpUser(userInfo);
-    if (result.data === "회원가입 성공") {
+    console.log(result);
+    if (result.data.statuscode === 200) {
       alert("회원가입 성공");
       navigate("/");
     } else {
@@ -40,47 +41,6 @@ const SignUp = () => {
       <SignLayout>
         <StWrap>
           <StForm onSubmit={signUpHandler}>
-            <StInput
-              required
-              type="text"
-              name="userNickname"
-              onChange={userInfoHandler}
-              value={userInfo.userNickname}
-              placeholder="아이디 - 소문자 4 - 8자를 입력해주세요!"
-            />
-            <StInput
-              value={userInfo.userPw}
-              type="password"
-              name="userPw"
-              onChange={userInfoHandler}
-              onBlur={() => {
-                if (userInfo.userPw === userInfo.userPwCheck) {
-                  return;
-                }
-                userInfo.userPwCheck &&
-                  alert("비밀번호 확인과 일치하지 않습니다!");
-              }}
-              required
-              minLength="8"
-              maxLength="15"
-              placeholder="비밀번호- 8-15자를 입력해 주세요!"
-            />
-            <StInput
-              type="password"
-              name="userPwCheck"
-              required
-              maxLength="15"
-              minLength="8"
-              placeholder="비밀번호와 똑같이 입력해주세요!"
-              value={userInfo.userPwCheck}
-              onChange={userInfoHandler}
-              onBlur={() => {
-                if (userInfo.userPw === userInfo.userPwCheck) {
-                  return;
-                }
-                alert("비밀번호와 일치하지 않습니다!");
-              }}
-            />
             <StInput
               type="text"
               name="userEmail"
@@ -98,6 +58,47 @@ const SignUp = () => {
                 alert("이메일 형식에 맞게 작성해주세요!");
               }}
               value={userInfo.userEmail}
+            />
+            <StInput
+              value={userInfo.userPw}
+              type="password"
+              name="userPw"
+              onChange={userInfoHandler}
+              onBlur={() => {
+                if (userInfo.userPw === userInfo.userPwCheck) {
+                  return;
+                }
+                userInfo.userPwCheck &&
+                  alert("비밀번호 확인과 일치하지 않습니다!");
+              }}
+              required
+              minLength="8"
+              maxLength="15"
+              placeholder="비밀번호 - 8-15자를 입력해 주세요"
+            />
+            <StInput
+              type="password"
+              name="userPwCheck"
+              required
+              maxLength="15"
+              minLength="8"
+              placeholder="비밀번호확인"
+              value={userInfo.userPwCheck}
+              onChange={userInfoHandler}
+              onBlur={() => {
+                if (userInfo.userPw === userInfo.userPwCheck) {
+                  return;
+                }
+                alert("비밀번호와 일치하지 않습니다!");
+              }}
+            />
+            <StInput
+              required
+              type="text"
+              name="userNickname"
+              onChange={userInfoHandler}
+              value={userInfo.userNickname}
+              placeholder="이름"
             />
             <div>
               <StBtn>회원가입</StBtn>

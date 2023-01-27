@@ -19,6 +19,7 @@ export const userApis = {
       const result = await axiosInstance.post("auth/login", authInfo, {
         withCredentials: true,
       });
+      console.log(result);
       return result;
     } catch (error) {
       console.log(error);

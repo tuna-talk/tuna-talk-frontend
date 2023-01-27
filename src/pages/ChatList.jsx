@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 
 const ChatList = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Navbar />
       <div>ChatList</div>;
     </>

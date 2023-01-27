@@ -21,8 +21,8 @@ const SignIn = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const result = await userApis.signInUser(login);
-
-    if (result.data === "로그인 성공") {
+    console.log(result.data);
+    if (result.data.statuscode === 200) {
       const token = result.headers.authorization;
       localStorage.setItem("token", token);
       window.location = "/";

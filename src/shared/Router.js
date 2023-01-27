@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ChatList from "../pages/ChatList";
 import Chat from "../pages/Chat";
 import FriendsList from "../pages/FriendsList";
-import FriendAdd from "../pages/FriendAdd";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 // import GlobalStyle from "./GlocalStyle";
@@ -16,7 +15,6 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/friendsList" element={<FriendsList />} />
-        <Route path="/friendAdd" element={<FriendAdd />} />
         <Route path="/chatList" element={<ChatList />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/signup" element={<SignUp />} />

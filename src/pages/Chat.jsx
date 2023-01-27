@@ -4,7 +4,7 @@ import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import Button from "../components/button/Button";
 import { useNavigate } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+// import { IoIosArrowBack } from "react-icons/io";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Chat = () => {
               navigate("/chatList");
             }}
           >
-            <IoIosArrowBack />
+            {/* <IoIosArrowBack /> */}
           </Button>
           <h4>참여자 이름</h4>
         </StchatName>

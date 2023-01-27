@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import HorizonLine from "../components/horizontal/HorizonLine";
+import { useDispatch, useSelector } from "react-redux";
+import { __getChatListThunk } from "../redux/modules/chatSlice";
 
 const ChatList = () => {
+  const dispatch = useDispatch();
+  const { isLoading, chatcollect, error } = useSelector(
+    (state) => state.chatcollect
+  );
+
+  useEffect(() => {
+    dispatch(__getChatListThunk());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <div> 로딩중 .... </div>;
+  }
+  if (error) return <div>알수 없는 에러가 발생했습니다.</div>;
+
   return (
     <Layout>
       <Navbar />
@@ -65,16 +81,5 @@ const ViewImg = styled.div`
     border-radius: 5%;
     position: absolute;
     object-fit: cover;
-  }
-`;
-
-const Stmy = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 150px 0px 0px;
-  border: 3px solid red;
-  hr {
-    border-bottom: 1px solid #000;
   }
 `;

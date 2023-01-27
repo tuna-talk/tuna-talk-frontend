@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Button from "./button/Button";
-import { BsFillChatFill } from "react-icons/bs";
-import { BsFillPersonFill } from "react-icons/bs";
+// import { BsFillChatFill } from "react-icons/bs";
+// import { BsFillPersonFill } from "react-icons/bs";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Navbar = () => {
           navigate("/friendsList");
         }}
       >
-        <BsFillPersonFill />
+        {/* <BsFillPersonFill /> */}
       </Button>
       <Button
         fs="25px"
@@ -34,7 +34,7 @@ const Navbar = () => {
           navigate("/chatList");
         }}
       >
-        <BsFillChatFill />
+        {/* <BsFillChatFill /> */}
       </Button>
     </NavContainer>
   );

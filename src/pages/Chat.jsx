@@ -26,11 +26,10 @@ const Chat = () => {
           <h4>참여자 이름</h4>
         </StchatName>
         <HorizonLine />
-        <div>채팅공방이 보여지는곳</div>
-        <HorizonLine />
-        <div>
-          <input size={69} />
-        </div>
+        <Stchatlining>채팅이 보여지는곳</Stchatlining>
+        <Stchatbox>
+          <textarea />
+        </Stchatbox>
       </Container>
     </Layout>
   );
@@ -51,15 +50,26 @@ const Container = styled.div`
 const StchatName = styled.div`
   display: flex;
   align-items: center;
-
-  Button {
-    display: flex;
-    align-items: center;
-    float: left;
-  }
+  justify-content: flex-start;
+  margin: 15px 210px 0px 0px;
 
   h4 {
-    display: flex;
-    float: center;
+    margin: 0px 0px 0px 100px;
+  }
+`;
+
+const Stchatlining = styled.div`
+  width: 500px;
+  height: 675px;
+`;
+
+const Stchatbox = styled.div`
+  display: flex;
+  width: 500px;
+  height: 150px;
+
+  textarea {
+    width: 500px;
+    height: 150px;
   }
 `;

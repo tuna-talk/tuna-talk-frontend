@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
@@ -6,6 +6,15 @@ import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 
 const FriendsList = () => {
+  useEffect(() => {
+    return;
+  }, []);
+
+  // if (isLoading) {
+  //   return <div>로딩중...</div>;
+  // }
+  // if (errer) return <div>알수 없는 에러가 발생했습니다.</div>;
+
   return (
     <Layout>
       <Navbar />

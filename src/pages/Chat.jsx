@@ -37,7 +37,7 @@ const Chat = () => {
 
 export default Chat;
 const Container = styled.div`
-  width: 500px;
+  width: 600px;
   height: 900px;
   background-color: #c2c1c1;
   display: flex;
@@ -60,16 +60,16 @@ const StchatName = styled.div`
 
 const Stchatlining = styled.div`
   width: 500px;
-  height: 675px;
+  height: 655px;
 `;
 
 const Stchatbox = styled.div`
   display: flex;
-  width: 500px;
+  width: 600px;
   height: 150px;
 
   textarea {
-    width: 500px;
+    width: 600px;
     height: 150px;
   }
 `;

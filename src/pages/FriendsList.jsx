@@ -32,12 +32,13 @@ const FriendsList = () => {
 export default FriendsList;
 const Container = styled.div`
   width: 500px;
-  height: 700px;
+  height: 842px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
   h2 {
     margin: 15px 0px 15px 0px;
   }

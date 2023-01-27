@@ -47,7 +47,7 @@ const NavContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #ececec;
-  height: 100vh;
+  height: 900px;
   width: 100px;
   box-shadow: 2px 2px #cacaca;
   float: left;

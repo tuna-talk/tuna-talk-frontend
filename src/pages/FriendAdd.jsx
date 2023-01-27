@@ -65,7 +65,7 @@ const FriendAdd = () => {
 export default FriendAdd;
 const Container = styled.div`
   width: 500px;
-  height: 700px;
+  height: 842px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;

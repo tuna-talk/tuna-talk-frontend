@@ -13,7 +13,7 @@ const ChatList = () => {
       <div style={{ padding: "0px 100px 0px 100px" }}>
         <Container>
           <h2>채팅</h2>
-          <input type="text" placeholder="채팅방 이름, 참여자 검색" size={69} />
+          <input type="text" placeholder="채팅방 이름, 참여자 검색" />
           <HorizonLine />
           <BoxText>
             <h2>채팅목록 get</h2>
@@ -27,7 +27,7 @@ const ChatList = () => {
 export default ChatList;
 const Container = styled.div`
   width: 500px;
-  height: 700px;
+  height: 842px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,8 @@ const Container = styled.div`
     margin: 15px 0px 15px 0px;
   }
   input {
-    margin: 0px 0px 10px 0px;
+    width: 490px;
+    margin: 0px 0px 0px 0px;
     padding: 10px 4px 10px 3px;
     opacity: 0.3;
   }

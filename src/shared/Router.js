@@ -6,7 +6,8 @@ import Chat from "../pages/Chat";
 import FriendsList from "../pages/FriendsList";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import GlobalStyle from "./GlocalStyle";
+// import GlobalStyle from "./GlocalStyle";
+
 const Router = () => {
   return (
     <BrowserRouter>

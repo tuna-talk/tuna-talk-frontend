@@ -19,7 +19,8 @@ const StWrap = styled.section`
 `;
 
 const StInnerWrap = styled.article`
-  width: 800px;
+  width: 600px;
+  height: 1070px;
   border-radius: 10px;
   padding: 5% 0;
   ${({ flex }) => flex({})}

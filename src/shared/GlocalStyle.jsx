@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
   }
   html {
-    font-size: 10px;
+    font-size: 18px;
   }
 `;
 

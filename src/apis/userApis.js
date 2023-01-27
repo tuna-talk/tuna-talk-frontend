@@ -4,7 +4,7 @@ export const userApis = {
   signUpUser: async (authInfo) => {
     axiosInstance.defaults.withCredentials = true;
     try {
-      const data = await axiosInstance.post("/auth/signup", authInfo, {
+      const data = await axiosInstance.post("auth/signup", authInfo, {
         withCredentials: true,
       });
       return data;
@@ -16,9 +16,10 @@ export const userApis = {
   signInUser: async (authInfo) => {
     axiosInstance.defaults.withCredentials = true;
     try {
-      const result = await axiosInstance.post("/auth/login", authInfo, {
+      const result = await axiosInstance.post("auth/login", authInfo, {
         withCredentials: true,
       });
+      console.log(result);
       return result;
     } catch (error) {
       console.log(error);

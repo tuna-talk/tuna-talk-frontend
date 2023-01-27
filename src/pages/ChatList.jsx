@@ -34,10 +34,11 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   h2 {
-    margin: 0px 0px 0px 0px;
+    margin: 15px 0px 15px 0px;
   }
   input {
-    padding: 0px 4px 0px 3px;
+    margin: 0px 0px 10px 0px;
+    padding: 10px 4px 10px 3px;
     opacity: 0.3;
   }
 `;

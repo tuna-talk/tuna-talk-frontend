@@ -39,7 +39,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   h2 {
-    margin: 0px 0px 0px 0px;
+    margin: 15px 0px 15px 0px;
   }
 `;
 

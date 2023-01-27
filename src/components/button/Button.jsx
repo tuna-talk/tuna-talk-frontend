@@ -17,6 +17,7 @@ const StyledButton = styled.button`
   background-color: ${({ bc }) => bc};
   color: ${({ color }) => color};
   font-size: ${({ fs }) => fs};
+  border-radius: ${({ br }) => br};
   &:active {
     color: ${({ activeC }) => activeC};
     background-color: ${({ activeBc }) => activeBc};
@@ -40,8 +41,8 @@ const StyledButton = styled.button`
       `;
     } else if (props.size === "s") {
       return css`
-        height: 40px;
-        width: 100px;
+        height: 20px;
+        width: 20px;
       `;
     } else {
       return css`

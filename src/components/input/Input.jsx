@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Input = ({ value, ...restProps }) => {
-  return <StyledInput {...restProps} onChage value={value} type="text" />;
+  return <StyledInput {...restProps} value={value} />;
 };
 
 export default Input;

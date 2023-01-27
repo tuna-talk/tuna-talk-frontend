@@ -12,18 +12,19 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const StWrap = styled.section`
-  width: 100wh;
+  width: 100;
   height: 100vh;
   ${({ flex }) => flex({})}
 `;
 const StInnerWrap = styled.article`
   width: 600px;
-  height: 100vh;
-  border-radius: 10px;
+  height: 900px;
+  border-radius: 10px 10px 0px 10px;
   /* padding: 5% 0; */
   /* ${({ flex }) => flex({})} */
   flex-direction: column;
-  background: #ffeb34;
+  background: #fff;
+  box-shadow: 2px 2px #cacaca;
 `;
 const StInnerBox = styled.div`
   /* width: 50%;

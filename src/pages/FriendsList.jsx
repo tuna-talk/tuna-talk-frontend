@@ -1,11 +1,20 @@
-import React from "react";
-// import Header from "../components/Header";
+import React, { useEffect } from "react";
+import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 
 const FriendsList = () => {
+  useEffect(() => {
+    return;
+  }, []);
+
+  // if (isLoading) {
+  //   return <div>로딩중...</div>;
+  // }
+  // if (errer) return <div>알수 없는 에러가 발생했습니다.</div>;
+
   return (
     <Layout>
       <Navbar />
@@ -32,14 +41,15 @@ const FriendsList = () => {
 export default FriendsList;
 const Container = styled.div`
   width: 500px;
-  height: 700px;
+  height: 842px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
   h2 {
-    margin: 0px 0px 0px 0px;
+    margin: 15px 0px 15px 0px;
   }
 `;
 

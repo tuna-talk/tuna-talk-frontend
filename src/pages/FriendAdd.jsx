@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Button from "../components/button/Button";
-import { BsSearch } from "react-icons/bs";
+// import { BsSearch } from "react-icons/bs";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 
@@ -32,7 +32,7 @@ const FriendAdd = () => {
                 padding="5px 0px 0px 0px"
                 // onClick={}
               >
-                <BsSearch />
+                {/* <BsSearch /> */}
               </Button>
             </div>
             <div>
@@ -65,7 +65,7 @@ const FriendAdd = () => {
 export default FriendAdd;
 const Container = styled.div`
   width: 500px;
-  height: 700px;
+  height: 842px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;

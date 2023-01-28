@@ -6,6 +6,7 @@ import Chat from "../pages/Chat";
 import FriendsList from "../pages/FriendsList";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import FriendAdd from "../pages/FriendAdd";
 // import GlobalStyle from "./GlocalStyle";
 
 const Router = () => {
@@ -15,6 +16,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/friendsList" element={<FriendsList />} />
+        <Route path="/friendAdd" element={<FriendAdd />} />
         <Route path="/chatList" element={<ChatList />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/signup" element={<SignUp />} />

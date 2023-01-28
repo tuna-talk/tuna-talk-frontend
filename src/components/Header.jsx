@@ -12,6 +12,8 @@ const Header = () => {
       <Button
         bc="transparent"
         fs="25px"
+        color="#868686"
+        hoverC="#000"
         margin="10px 0px 10px 375px"
         padding="0px 0px 0px 55px"
         display="flex"

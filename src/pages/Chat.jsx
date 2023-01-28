@@ -4,7 +4,7 @@ import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import Button from "../components/button/Button";
 import { useNavigate } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+// import { IoIosArrowBack } from "react-icons/io";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Chat = () => {
               navigate("/chatList");
             }}
           >
-            <IoIosArrowBack />
+            {/* <IoIosArrowBack /> */}
           </Button>
           <h4>참여자 이름</h4>
         </StchatName>
@@ -37,7 +37,7 @@ const Chat = () => {
 
 export default Chat;
 const Container = styled.div`
-  width: 500px;
+  width: 600px;
   height: 900px;
   background-color: #c2c1c1;
   display: flex;
@@ -60,16 +60,16 @@ const StchatName = styled.div`
 
 const Stchatlining = styled.div`
   width: 500px;
-  height: 675px;
+  height: 655px;
 `;
 
 const Stchatbox = styled.div`
   display: flex;
-  width: 500px;
+  width: 600px;
   height: 150px;
 
   textarea {
-    width: 500px;
+    width: 600px;
     height: 150px;
   }
 `;

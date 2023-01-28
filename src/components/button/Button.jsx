@@ -36,8 +36,13 @@ const StyledButton = styled.button`
       `;
     } else if (props.size === "m") {
       return css`
-        height: 45px;
-        width: 130px;
+        height: 50px;
+        width: 80px;
+      `;
+    } else if (props.size === "s") {
+      return css`
+        height: 20px;
+        width: 20px;
       `;
     } else if (props.size === "s") {
       return css`

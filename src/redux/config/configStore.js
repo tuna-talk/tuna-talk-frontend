@@ -1,6 +1,8 @@
-// import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import chatcollect from "../modules/chatSlice";
 
-// const store = configureStore({
-//   reducer={Friends, }
-// });
-// export default store;
+const store = configureStore({
+  reducer: { chatcollect },
+});
+
+export default store;

@@ -1,11 +1,26 @@
-import React from "react";
-// import Header from "../components/Header";
+import React, { useEffect } from "react";
+import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
+import { useDispatch, useSelector } from "react-redux";
+import { __getChatListThunk } from "../redux/modules/chatSlice";
+import { useNavigate } from "react-router-dom";
+import ChatRoom from "../components/ChatRoom";
 
 const ChatList = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { chatcollect, error } = useSelector((state) => state.chatcollect);
+
+  useEffect(() => {
+    dispatch(__getChatListThunk());
+  }, [dispatch]);
+
+  if (error) return <div>알수 없는 에러가 발생했습니다.</div>;
+
   return (
     <Layout>
       <Navbar />
@@ -13,10 +28,17 @@ const ChatList = () => {
       <div style={{ padding: "0px 100px 0px 100px" }}>
         <Container>
           <h2>채팅</h2>
-          <input type="text" placeholder="채팅방 이름, 참여자 검색" size={69} />
+          <input type="text" placeholder="채팅방 이름, 참여자 검색" />
           <HorizonLine />
           <BoxText>
-            <h2>채팅목록 get</h2>
+            {chatcollect.map((props) => (
+              <ChatRoom
+                key={props.chatRoomId}
+                id={props.chatRoomId}
+                roomName={props.roomName}
+                message={props.lastMessage}
+              />
+            ))}
           </BoxText>
         </Container>
       </div>
@@ -27,26 +49,33 @@ const ChatList = () => {
 export default ChatList;
 const Container = styled.div`
   width: 500px;
-  height: 700px;
+  height: 842px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   h2 {
-    margin: 0px 0px 0px 0px;
+    margin: 15px 0px 15px 0px;
   }
   input {
-    padding: 0px 4px 0px 3px;
+    width: 490px;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 4px 10px 3px;
     opacity: 0.3;
   }
 `;
 
 const BoxText = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  opacity: 0.3;
+
+  padding: 10px;
+  h4 {
+    padding: 10px;
+    margin: auto;
+  }
 `;
 
 const ViewImg = styled.div`
@@ -63,16 +92,5 @@ const ViewImg = styled.div`
     border-radius: 5%;
     position: absolute;
     object-fit: cover;
-  }
-`;
-
-const Stmy = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 150px 0px 0px;
-  border: 3px solid red;
-  hr {
-    border-bottom: 1px solid #000;
   }
 `;

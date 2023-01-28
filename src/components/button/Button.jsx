@@ -44,10 +44,10 @@ const StyledButton = styled.button`
         height: 20px;
         width: 20px;
       `;
-    } else if (props.size === "s") {
+    } else if (props.size === "h") {
       return css`
-        height: 20px;
-        width: 20px;
+        height: 18px;
+        width: 50px;
       `;
     } else {
       return css`

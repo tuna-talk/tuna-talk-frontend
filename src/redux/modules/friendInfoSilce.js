@@ -64,7 +64,7 @@ export const __addFriendThunk = createAsyncThunk(
 // );
 
 export const friendinfoSlice = createSlice({
-  name: "friendinfoSlice",
+  name: "friendinfo",
   initialState,
   reducers: {},
   extraReducers: {

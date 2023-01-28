@@ -4,7 +4,6 @@ import { StInput, StForm, StBtn } from "./../lib/signStyle";
 import SignLayout from "./../signLayout/SignLayout";
 import { useNavigate } from "react-router-dom";
 import { userApis } from "../apis/userApis";
-
 const SignUp = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
@@ -13,21 +12,18 @@ const SignUp = () => {
     userPwCheck: "",
     userEmail: "",
   });
-
   const userInfoHandler = ({ target: { value, name } }) => {
     setUserInfo((prev) => ({ ...prev, [name]: value.trim() }));
   };
-
   const signUpHandler = async (e) => {
     e.preventDefault();
     if (!userInfo.userPw === userInfo.userPwCheck) {
       alert("비밀번호와 비밀번호 확인이 같지 않습니다!");
       return;
     }
-
     const result = await userApis.signUpUser(userInfo);
     console.log(result);
-    if (result.data.statuscode === 200) {
+    if (result.data.data === "회원가입 성공") {
       alert("회원가입 성공");
       navigate("/");
     } else {
@@ -35,7 +31,6 @@ const SignUp = () => {
       window.location.reload();
     }
   };
-
   return (
     <>
       <SignLayout>
@@ -118,9 +113,7 @@ const SignUp = () => {
     </>
   );
 };
-
 export default SignUp;
-
 const StWrap = styled.section`
   max-width: 1200px;
   margin: 0 auto;

@@ -1,5 +1,4 @@
 import { axiosInstance } from "../config/axiosInstance";
-
 export const userApis = {
   signUpUser: async (authInfo) => {
     axiosInstance.defaults.withCredentials = true;
@@ -12,17 +11,14 @@ export const userApis = {
       return error;
     }
   },
-
   signInUser: async (authInfo) => {
     axiosInstance.defaults.withCredentials = true;
     try {
       const result = await axiosInstance.post("auth/login", authInfo, {
         withCredentials: true,
       });
-      console.log(result);
       return result;
     } catch (error) {
-      console.log(error);
       return error;
     }
   },

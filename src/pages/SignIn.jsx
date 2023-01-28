@@ -7,31 +7,24 @@ import { useNavigate } from "react-router-dom";
 import { userApis } from "./../apis/userApis";
 const SignIn = () => {
   const navigate = useNavigate();
-
   const [login, setLogin] = useState({
     userEmail: "",
     userPw: "",
   });
-
   const loginHandler = ({ target: { value, name } }) => {
     setLogin((prev) => ({ ...prev, [name]: value.trim() }));
   };
-
   const onLogin = async (e) => {
     e.preventDefault();
     const result = await userApis.signInUser(login);
-    console.log(result.data);
-    if (result.data.statuscode === 200) {
+    console.log(result);
+    if (result.data.data === "로그인 성공") {
       const token = result.headers.authorization;
       localStorage.setItem("token", token);
       window.location = "/FriendsList";
     } else {
       alert("일치하는 정보가 없습니다!");
     }
-  };
-
-  const moveSocialLoginPage = (url) => () => {
-    window.location.replace(url);
   };
   return (
     <>
@@ -73,9 +66,7 @@ const SignIn = () => {
     </>
   );
 };
-
 export default SignIn;
-
 const StWrap = styled.section`
   max-width: 1200px;
   margin: 0 auto;

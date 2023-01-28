@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __addFriendThunk } from "../redux/modules/friendInfoSilce";
+import addData from "../components/addData";
 
 const FriendAdd = () => {
   // 검색ref, 검색성공하면 기본이미지를 서버에서 받자.
@@ -15,6 +16,7 @@ const FriendAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { friendinfo } = useSelector((state) => state.friendinfo);
+  console.log("친구정보", friendinfo);
   const userEmail = useRef("");
   console.log(userEmail);
   return (
@@ -43,7 +45,12 @@ const FriendAdd = () => {
             </form>
             <div>
               {friendinfo.map((props) => (
-                <addData />
+                <addData
+                  key={props.userEmail}
+                  userPic={props.userImage}
+                  userName={props.userNickname}
+                  userMsg={props.userMessage}
+                />
               ))}
             </div>
           </BoxText>

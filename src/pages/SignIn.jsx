@@ -5,7 +5,6 @@ import SignLayout from "./../signLayout/SignLayout";
 import Button from "./../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { userApis } from "./../apis/userApis";
-
 const SignIn = () => {
   const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ const SignIn = () => {
     if (result.data.statuscode === 200) {
       const token = result.headers.authorization;
       localStorage.setItem("token", token);
-      window.location = "/";
+      window.location = "/FriendsList";
     } else {
       alert("일치하는 정보가 없습니다!");
     }

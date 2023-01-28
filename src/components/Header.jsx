@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { BsFillPersonPlusFill } from "react-icons/bs";
+// import { BsFillPersonPlusFill } from "react-icons/bs";
 import Button from "./button/Button";
 
 const Header = () => {
@@ -19,7 +19,7 @@ const Header = () => {
           navigate("/friendAdd");
         }}
       >
-        <BsFillPersonPlusFill />
+        {/* <BsFillPersonPlusFill /> */}
       </Button>
     </HearderContainer>
   );

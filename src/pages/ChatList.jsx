@@ -3,23 +3,22 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import { useDispatch, useSelector } from "react-redux";
 import { __getChatListThunk } from "../redux/modules/chatSlice";
+import { useNavigate } from "react-router-dom";
+import ChatRoom from "../components/ChatRoom";
 
 const ChatList = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoading, chatcollect, error } = useSelector(
-    (state) => state.chatcollect
-  );
+  const { chatcollect, error } = useSelector((state) => state.chatcollect);
 
   useEffect(() => {
     dispatch(__getChatListThunk());
   }, [dispatch]);
 
-  if (isLoading) {
-    return <div> 로딩중 .... </div>;
-  }
   if (error) return <div>알수 없는 에러가 발생했습니다.</div>;
 
   return (
@@ -32,7 +31,14 @@ const ChatList = () => {
           <input type="text" placeholder="채팅방 이름, 참여자 검색" />
           <HorizonLine />
           <BoxText>
-            <h2>채팅목록 get</h2>
+            {chatcollect.map((props) => (
+              <ChatRoom
+                key={props.chatRoomId}
+                id={props.chatRoomId}
+                roomName={props.roomName}
+                message={props.lastMessage}
+              />
+            ))}
           </BoxText>
         </Container>
       </div>
@@ -62,9 +68,14 @@ const Container = styled.div`
 
 const BoxText = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  opacity: 0.3;
+
+  padding: 10px;
+  h4 {
+    padding: 10px;
+    margin: auto;
+  }
 `;
 
 const ViewImg = styled.div`

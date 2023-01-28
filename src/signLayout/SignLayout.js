@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import flex from "./../lib/flex";
-const Layout = ({ children }) => {
+
+const SignLayout = ({ children }) => {
   return (
     <StWrap flex={flex}>
       <StInnerWrap flex={flex}>
@@ -9,26 +10,27 @@ const Layout = ({ children }) => {
     </StWrap>
   );
 };
-export default Layout;
+
+export default SignLayout;
 
 const StWrap = styled.section`
-  width: 100;
-  height: 100vh;
+  width: 100wh;
   ${({ flex }) => flex({})}
 `;
+
 const StInnerWrap = styled.article`
   width: 600px;
-  height: 900px;
-  border-radius: 10px 10px 0px 10px;
-  /* padding: 5% 0; */
-  /* ${({ flex }) => flex({})} */
+  height: 1070px;
+  border-radius: 10px;
+  padding: 5% 0;
+  ${({ flex }) => flex({})}
   flex-direction: column;
-  background: #fff;
-  box-shadow: 2px 2px #cacaca;
+  background: #ffeb34;
 `;
+
 const StInnerBox = styled.div`
-  /* width: 50%;
+  width: 50%;
   h1 {
     text-align: center;
-  } */
+  }
 `;

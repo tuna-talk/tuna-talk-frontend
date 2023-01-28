@@ -56,7 +56,8 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   h2 {
-    margin: 15px 0px 15px 0px;
+    /* border: 1px solid red; */
+    /* margin: 15px 0px 15px 0px; */
   }
   input {
     width: 490px;
@@ -68,13 +69,14 @@ const Container = styled.div`
 
 const BoxText = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 
   padding: 10px;
   h4 {
-    padding: 10px;
-    margin: auto;
+    /* border: 1px solid cyan; */
+    padding: 10px 0px 0px 0px;
+    margin: 0px 0px 0px 70px;
   }
 `;
 

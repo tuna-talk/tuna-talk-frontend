@@ -5,11 +5,18 @@ import Button from "../components/button/Button";
 // import { BsSearch } from "react-icons/bs";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { __addFriendThunk } from "../redux/modules/friendInfoSilce";
 
 const FriendAdd = () => {
   // 검색ref, 검색성공하면 기본이미지를 서버에서 받자.
-  const serchRef = useRef("");
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { friendinfo } = useSelector((state) => state.friendinfo);
+  const userEmail = useRef("");
+  console.log(userEmail);
   return (
     <Layout>
       <Navbar />
@@ -19,41 +26,25 @@ const FriendAdd = () => {
             <h2>친구추가</h2>
             <h3>id로 추가하기</h3>
             <HorizonLine />
-            <div>
+            <form
+              onSubmit={() => {
+                dispatch(__addFriendThunk());
+                navigate("/Home");
+              }}
+            >
               <input
-                ref={serchRef}
+                ref={userEmail}
                 type="text"
                 placeholder="친구 카카오톡 ID"
               />
-              <Button
-                size="s"
-                bc="transparent"
-                hoverC="#000"
-                padding="5px 0px 0px 0px"
-                // onClick={}
-              >
-                {/* <BsSearch /> */}
+              <Button size="h" bc="#f70202">
+                검색
               </Button>
-            </div>
+            </form>
             <div>
-              <ViewImg>
-                <img src />
-              </ViewImg>
-            </div>
-            <div>
-              <h4>유저이름</h4>
-            </div>
-            <div>
-              <Button
-                size="m"
-                bc="#fff"
-                hoverC="#000"
-                br="10px"
-                margin="25px 0px 0px 240px"
-                // onClick={}
-              >
-                추가하기
-              </Button>
+              {friendinfo.map((props) => (
+                <addData />
+              ))}
             </div>
           </BoxText>
         </Container>
@@ -63,6 +54,7 @@ const FriendAdd = () => {
 };
 
 export default FriendAdd;
+
 const Container = styled.div`
   width: 500px;
   height: 842px;
@@ -87,22 +79,4 @@ const BoxText = styled.div`
   opacity: 0.3;
   width: 300px;
   height: 500px;
-`;
-
-const ViewImg = styled.div`
-  margin-top: 30px;
-  width: 50px;
-  height: 50px;
-  border: 1px solid red;
-  display: flex;
-  img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 10%;
-    border-radius: 5%;
-    position: absolute;
-    object-fit: cover;
-  }
 `;

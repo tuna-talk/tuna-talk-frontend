@@ -7,7 +7,7 @@ import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __addFriendThunk } from "../redux/modules/friendInfoSilce";
+import { __addFriendThunk } from "../redux/modules/friendinfoSilce";
 
 const FriendAdd = () => {
   // 검색ref, 검색성공하면 기본이미지를 서버에서 받자.

@@ -18,7 +18,7 @@ const FriendsList = () => {
   return (
     <Layout>
       <Navbar />
-      {/* <Header /> */}
+      <Header />
       <div style={{ padding: "0px 100px 0px 100px" }}>
         <Container>
           <h2>친구</h2>

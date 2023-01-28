@@ -24,7 +24,7 @@ const ChatList = () => {
   return (
     <Layout>
       <Navbar />
-      {/* <Header /> */}
+      <Header />
       <div style={{ padding: "0px 100px 0px 100px" }}>
         <Container>
           <h2>채팅</h2>

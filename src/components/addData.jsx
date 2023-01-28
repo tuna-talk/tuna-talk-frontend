@@ -2,31 +2,37 @@ import React from "react";
 import Button from "./button/Button";
 import styled from "styled-components";
 import { __removeChatListThunk } from "../redux/modules/chatSlice";
+import { useNavigate } from "react-router-dom";
 
-const addData = (props) => {
+const AddData = (props) => {
   console.log(props);
+  const navigate = useNavigate();
+  const addFriend = () => {
+    navigate("/friendsList");
+  };
+
   return (
-    <div>
+    <form onSubmit={addFriend}>
       <ViewImg>
-        <img src />
+        <img src={props.userMsg} />
       </ViewImg>
       <div>
-        <h4>유저이름</h4>
+        <h4>{props.userName}</h4>
       </div>
       <Button
         size="m"
         bc="#fff"
         hoverC="#000"
         br="10px"
-        margin="25px 0px 0px 240px"
-        // onClick={}
+        padding="0px 0px 0px 0px"
+        margin="20px 0px 0px 240px"
       >
         추가하기
       </Button>
-    </div>
+    </form>
   );
 };
-export default addData;
+export default AddData;
 
 const ViewImg = styled.div`
   margin-top: 30px;

@@ -48,7 +48,7 @@ export const __removeChatListThunk = createAsyncThunk(
 );
 
 export const chatSlice = createSlice({
-  name: "chatSlice",
+  name: "chatcollect",
   initialState,
   reducers: {},
   extraReducers: {

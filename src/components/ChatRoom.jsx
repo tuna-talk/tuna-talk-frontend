@@ -62,6 +62,6 @@ const Roomarr = styled.div`
     margin: 0px 0px 0px 70px;
   }
   h4 {
-    padding: 0px 320px 0px 0px;
+    padding: 0px 260px 0px 0px;
   }
 `;

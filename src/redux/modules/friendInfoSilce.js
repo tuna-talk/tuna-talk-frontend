@@ -38,11 +38,11 @@ const config = {
 // 친구추가 post요청
 export const __addFriendThunk = createAsyncThunk(
   "ADD_FRIEND",
-
   async (payload, thunkAPI) => {
     try {
+      console.log("프랜드 에드에서 잘 넘어왔나?", payload);
       const Request = await axiosInstance.post(`/friend/${payload}`);
-      console.log(Request);
+
       return thunkAPI.fulfillWithValue(payload);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);

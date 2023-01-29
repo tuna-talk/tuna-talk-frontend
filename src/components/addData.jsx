@@ -12,13 +12,13 @@ const AddData = (props) => {
   };
 
   return (
-    <form onSubmit={addFriend}>
+    <Stform onSubmit={addFriend}>
       <ViewImg>
         <img src={props.userMsg} />
       </ViewImg>
-      <div>
-        <h4>{props.userName}</h4>
-      </div>
+      <NickName>
+        <h4>dbwj{props.userName}</h4>
+      </NickName>
       <Button
         size="m"
         bc="#fff"
@@ -29,13 +29,18 @@ const AddData = (props) => {
       >
         추가하기
       </Button>
-    </form>
+    </Stform>
   );
 };
 export default AddData;
 
+const Stform = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
 const ViewImg = styled.div`
-  margin-top: 30px;
+  margin: 0px 0px 0px 130px;
   width: 50px;
   height: 50px;
   border: 1px solid red;
@@ -50,4 +55,9 @@ const ViewImg = styled.div`
     position: absolute;
     object-fit: cover;
   }
+`;
+
+const NickName = styled.div`
+  align-items: center;
+  justify-content: center;
 `;

@@ -6,24 +6,19 @@ import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { __addFriendThunk } from "../redux/modules/friendinfoSilce";
+import { __addFriendThunk } from "../redux/modules/friendInfoSilce";
 import AddData from "../components/AddData";
 
 const FriendAdd = () => {
   // 검색ref, 검색성공하면 기본이미지를 서버에서 받자.
 
   const dispatch = useDispatch();
-  const { friendinfo } = useSelector((state) => state.friendinfo);
-  console.log("친구정보", friendinfo);
-  const userEmail = useRef("");
-  // console.log(userEmail);
-
   const [visible, setVisible] = useState(false);
+  const { friendinfo, error } = useSelector((state) => state.friendinfo);
 
-  const findFriend = () => {
-    dispatch(__addFriendThunk(friendinfo.userEmail));
-    setVisible(true);
-  };
+  console.log("셀렉 인포", friendinfo);
+
+  const email = useRef();
 
   return (
     <Layout>
@@ -34,28 +29,33 @@ const FriendAdd = () => {
             <h2>친구추가</h2>
             <h3>id로 추가하기</h3>
             <HorizonLine />
-            <form onSubmit={findFriend}>
-              <input
-                ref={userEmail}
-                type="text"
-                placeholder="친구 카카오톡 ID"
-              />
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log("ref 잘 받나?", email.current.value);
+                const userEmail = email.current.value;
+                console.log(1234, userEmail);
+                dispatch(__addFriendThunk(userEmail));
+                setVisible(true);
+              }}
+            >
+              <input type="text" ref={email} placeholder="친구 카카오톡 ID" />
               <Button size="h" bc="#f70202" padding="0px 0px 20px 0px">
                 검색
               </Button>
             </form>
-            {visible && (
-              <div>
-                {friendinfo.map((props) => (
-                  <AddData
-                    key={props.userEmail}
-                    userPic={props.userImage}
-                    userName={props.userNickname}
-                  />
-                ))}
-              </div>
-            )}
           </BoxText>
+          {visible && (
+            <div>
+              {friendinfo.map((props) => (
+                <AddData
+                  key={props.userEmail}
+                  userPic={props.userImage}
+                  userName={props.userNickname}
+                />
+              ))}
+            </div>
+          )}
         </Container>
       </div>
     </Layout>
@@ -78,6 +78,9 @@ const Container = styled.div`
   h4 {
     align-items: center;
   }
+  div {
+    display: flex;
+  }
 `;
 
 const BoxText = styled.div`
@@ -87,11 +90,5 @@ const BoxText = styled.div`
   align-items: center;
   opacity: 0.3;
   width: 300px;
-  height: 500px;
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  height: 300px;
 `;

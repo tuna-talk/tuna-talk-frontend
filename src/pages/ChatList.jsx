@@ -8,7 +8,7 @@ import HorizonLine from "../components/horizontal/HorizonLine";
 import { useDispatch, useSelector } from "react-redux";
 import { __getChatListThunk } from "../redux/modules/chatSlice";
 import { useNavigate } from "react-router-dom";
-// import ChatRoom from "../components/ChatRoom";
+import ChatRoom from "../components/ChatRoom";
 
 const ChatList = () => {
   const navigate = useNavigate();
@@ -31,14 +31,14 @@ const ChatList = () => {
           <input type="text" placeholder="채팅방 이름, 참여자 검색" />
           <HorizonLine />
           <BoxText>
-            {/* {chatcollect.map((props) => (
+            {chatcollect.map((props) => (
               <ChatRoom
                 key={props.chatRoomId}
                 id={props.chatRoomId}
                 roomName={props.roomName}
                 message={props.lastMessage}
               />
-            ))} */}
+            ))}
           </BoxText>
         </Container>
       </div>

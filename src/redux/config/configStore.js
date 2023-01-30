@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import chatcollect from "../modules/chatSlice";
-import friendinfoSlice from "../modules/friendInfoSilce";
+import friendinfo from "../modules/friendInfoSlice";
 
 const store = configureStore({
-  reducer: { chatcollect, friendinfoSlice },
+  reducer: { chatcollect, friendinfo },
 });
 
 export default store;

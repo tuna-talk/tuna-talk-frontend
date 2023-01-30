@@ -6,6 +6,7 @@ import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
+import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
 import AddData from "../components/AddData";
 import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
 import { StBox } from "../lib/signStyle";

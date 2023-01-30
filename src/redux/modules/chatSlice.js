@@ -12,7 +12,6 @@ const initialState = {
   ],
   error: null,
   isLoading: false,
-  isSuccess: false,
 };
 
 const config = {

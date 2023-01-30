@@ -14,7 +14,7 @@ const AddData = (props) => {
   return (
     <Stform onSubmit={addFriend}>
       <ViewImg>
-        <img src={props.userMsg} />
+        <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
       </ViewImg>
       <NickName>
         <h4>dbwj{props.userName}</h4>
@@ -49,8 +49,8 @@ const ViewImg = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
-    height: 10%;
+    width: 50px;
+    height: 50px;
     border-radius: 5%;
     position: absolute;
     object-fit: cover;
@@ -60,4 +60,10 @@ const ViewImg = styled.div`
 const NickName = styled.div`
   align-items: center;
   justify-content: center;
+  h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+  }
 `;

@@ -5,8 +5,8 @@ import Button from "../components/button/Button";
 // import { BsSearch } from "react-icons/bs";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
-import { useDispatch, useSelector } from "react-redux";
-import { __addFriendThunk } from "../redux/modules/friendInfoSilce";
+import { useDispatch } from "react-redux";
+import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
 import AddData from "../components/AddData";
 
 const FriendAdd = () => {
@@ -14,9 +14,6 @@ const FriendAdd = () => {
 
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
-  const { friendinfo, error } = useSelector((state) => state.friendinfo);
-
-  console.log("셀렉 인포", friendinfo);
 
   const email = useRef();
 
@@ -32,10 +29,9 @@ const FriendAdd = () => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log("ref 잘 받나?", email.current.value);
                 const userEmail = email.current.value;
-                console.log(1234, userEmail);
-                dispatch(__addFriendThunk(userEmail));
+                console.log(userEmail);
+                dispatch(__searchFriendThunk(userEmail));
                 setVisible(true);
               }}
             >
@@ -45,17 +41,7 @@ const FriendAdd = () => {
               </Button>
             </form>
           </BoxText>
-          {visible && (
-            <div>
-              {friendinfo.map((props) => (
-                <AddData
-                  key={props.userEmail}
-                  userPic={props.userImage}
-                  userName={props.userNickname}
-                />
-              ))}
-            </div>
-          )}
+          {visible && <AddData />}
         </Container>
       </div>
     </Layout>

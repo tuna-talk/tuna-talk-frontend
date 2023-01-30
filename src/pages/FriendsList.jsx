@@ -4,16 +4,21 @@ import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
+import AddData from "../components/AddData";
+import { useSelector } from "react-redux";
 
 const FriendsList = () => {
   useEffect(() => {
     return;
   }, []);
 
-  // if (isLoading) {
-  //   return <div>로딩중...</div>;
-  // }
-  // if (errer) return <div>알수 없는 에러가 발생했습니다.</div>;
+  const { isLoading, friendinfo, error } = useSelector(
+    (state) => state.friendinfo
+  );
+  if (isLoading) {
+    return <div> 로딩중 .... </div>;
+  }
+  if (error) return <div>알수 없는 에러가 발생했습니다.</div>;
 
   return (
     <Layout>
@@ -30,7 +35,15 @@ const FriendsList = () => {
               <h4>유저이름</h4>
             </Stmy>
             <HorizonLine />
-            <div>친구 추가 목록</div>
+            <div>
+              {friendinfo.map((props) => (
+                <AddData
+                  key={props.userEmail}
+                  userPic={props.userImage}
+                  userName={props.userNickname}
+                />
+              ))}
+            </div>
           </BoxText>
         </Container>
       </div>

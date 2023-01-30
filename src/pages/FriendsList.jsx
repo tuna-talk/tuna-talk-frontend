@@ -5,12 +5,18 @@ import styled from "styled-components";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import AddData from "../components/AddData";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { __getFriendThunk } from "../redux/modules/friendInfoSlice";
 
 const FriendsList = () => {
-  useEffect(() => {
-    return;
-  }, []);
+  const userName = localStorage.getItem("userNickname");
+  const userimage = localStorage.getItem("userImage");
+  console.log(userimage);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(__getFriendThunk(userEmail));
+  // }, [dispatch]);
+  console.log();
 
   const { isLoading, friendinfo, error } = useSelector(
     (state) => state.friendinfo
@@ -30,20 +36,11 @@ const FriendsList = () => {
           <BoxText>
             <Stmy>
               <ViewImg>
-                <img src />
+                <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
               </ViewImg>
-              <h4>유저이름</h4>
+              <h4>{userName}</h4>
             </Stmy>
             <HorizonLine />
-            <div>
-              {friendinfo.map((props) => (
-                <AddData
-                  key={props.userEmail}
-                  userPic={props.userImage}
-                  userName={props.userNickname}
-                />
-              ))}
-            </div>
           </BoxText>
         </Container>
       </div>
@@ -70,7 +67,7 @@ const BoxText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0.3;
+  /* opacity: 0.3; */
   margin: 0px 0px 0px 10px;
 `;
 
@@ -84,8 +81,8 @@ const ViewImg = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
-    height: 10%;
+    width: 50px;
+    height: 50px;
     border-radius: 5%;
     position: absolute;
     object-fit: cover;
@@ -97,5 +94,8 @@ const Stmy = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px 350px 0px 0px;
-  border: 3px solid red;
+  /* border: 3px solid red; */
+  h4 {
+    padding: 0px 10px 0px 10px;
+  }
 `;

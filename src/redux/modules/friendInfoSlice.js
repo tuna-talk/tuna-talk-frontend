@@ -7,13 +7,11 @@ const initialState = {
       userId: 1,
       userEmail: "",
       userNickname: "",
-      userImage: "",
       userMessage: "",
     },
   ],
   error: null,
   isLoading: false,
-  isSuccess: false,
 };
 
 const config = {
@@ -22,18 +20,30 @@ const config = {
   },
 };
 
+// 친구 GET요청
+export const __getFriendThunk = createAsyncThunk(
+  "GET_CHATS",
+  async (userEmail, thunkAPI) => {
+    try {
+      const Request = await axiosInstance.get(`/friend/${userEmail}`, config);
+      return thunkAPI.fulfillWithValue(Request.data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.code);
+    }
+  }
+);
+
 // 친구 서치 post요철
 export const __searchFriendThunk = createAsyncThunk(
   "SEARCH_FRIEND",
-  async (userEmail, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      console.log(userEmail);
-      const searchInfo = { userEmail };
-      const Request = await axiosInstance.post(
-        `/friend/${userEmail}`,
-        searchInfo
-      );
-      console.log("서버로 보내기", Request.config.data);
+      const userEmail = payload.myEmail;
+      const friendEmail = payload.userEmail;
+      const Request = await axiosInstance.post(`/friend/${userEmail}`, {
+        friendEmail,
+      });
+
       return thunkAPI.fulfillWithValue(Request.config.data);
     } catch (e) {
       return console.log(e);
@@ -59,6 +69,14 @@ export const friendInfoSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    // [__getChatListThunk.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.chatcollect = action.payload;
+    // },
+    // [__getChatListThunk.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // },
     // [__searchFriendThunk.pending]: (state) => {
     //   state.friendinfo.isLoading = true;
     // },

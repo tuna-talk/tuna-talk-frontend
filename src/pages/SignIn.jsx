@@ -20,7 +20,13 @@ const SignIn = () => {
     console.log(result);
     if (result.data.data === "로그인 성공") {
       const token = result.headers.authorization;
+      const userName = result.data.userNickname;
+      const userEmail = result.data.userEmail;
+      const image = result.data.userImage;
       localStorage.setItem("token", token);
+      localStorage.setItem("userEmail", userEmail);
+      localStorage.setItem("userNickname", userName);
+      localStorage.setItem("userImage", image);
       window.location = "/FriendsList";
     } else {
       alert("일치하는 정보가 없습니다!");

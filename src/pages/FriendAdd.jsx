@@ -6,7 +6,7 @@ import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { __addFriendThunk } from "../redux/modules/friendinfoSilce";
+import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
 import AddData from "../components/AddData";
 
 const FriendAdd = () => {
@@ -21,7 +21,7 @@ const FriendAdd = () => {
   const [visible, setVisible] = useState(false);
 
   const findFriend = () => {
-    dispatch(__addFriendThunk(friendinfo.userEmail));
+    dispatch(__searchFriendThunk(friendinfo.userEmail));
     setVisible(true);
   };
 

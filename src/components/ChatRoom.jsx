@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { __removeChatListThunk } from "../redux/modules/chatSlice";
 
 const ChatRoom = (props) => {
+  console.log("채팅룸", props);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const remove = () => {

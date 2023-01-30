@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { __removeFriendThunk } from "../redux/modules/friendInfoSlice";
 
 const FriendZip = (props) => {
-  console.log("친구 추가 프롭스", props);
   const myEmail = localStorage.getItem("userEmail");
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -7,11 +7,9 @@ import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import { useDispatch, useSelector } from "react-redux";
 import { __getChatListThunk } from "../redux/modules/chatSlice";
-import { useNavigate } from "react-router-dom";
 import ChatRoom from "../components/ChatRoom";
 
 const ChatList = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { chatcollect, error } = useSelector((state) => state.chatcollect);
 

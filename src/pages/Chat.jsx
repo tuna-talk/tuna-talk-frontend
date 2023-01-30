@@ -4,22 +4,26 @@ import Layout from "../components/Layout";
 import Button from "../components/button/Button";
 import { React, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import SockJsClient from "react-stomp";
+import { useNavigate, useParams } from "react-router-dom";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
-// import { IoIosArrowBack } from "react-icons/io";
+import { getChatRoom, getMessage } from "../redux/modules/socketSlice";
+// import {
+//   addMessage,
+//   getMessage,
+//   getChatRoom,
+// } from "../redux/modules/socketSlice";
 
 const Chat = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { friendNickname } = useParams();
   const dispatch = useDispatch();
+  console.log(friendNickname);
 
   const [message, setMessage] = useState("");
 
-  const socket = new SockJS("");
-  const client = Stomp.over(socket);
+  const sock = new SockJS("/ws-stomp");
+  const client = Stomp.over(sock);
 
   const headers = {
     headers: {
@@ -45,19 +49,19 @@ const Chat = () => {
 
   //이전 채팅 내용 가져오기
   useEffect(() => {
-    dispatch(getMessage(id));
+    dispatch(getMessage());
   }, []);
 
   // 채팅 엔터키/shif+enter 막기
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey == false) {
       window.scrollTo(0, 0);
-      sendMessage();
+      // sendMessage();
     }
   };
 
-  // 채팅방 이름
-  const room = chatRoom.filter((x) => x.id === id);
+  // // 채팅방 이름
+  // const room = chatRoom.filter((x) => x.id === id);
 
   //연결&구독 // 방입장
   function onConneted() {
@@ -69,10 +73,10 @@ const Chat = () => {
         // 소켓서버를 호출하고 header에 토큰을 확인한다
 
         client.subscribe(
-          `/sub/chat/room/${id}`,
+          // `/sub/chats/${chatRoomId}`,
           (data) => {
             const newMessage = JSON.parse(data.body); //JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성
-            dispatch(addMessage(newMessage));
+            // dispatch(addMessage(newMessage));
           },
           headers
         );
@@ -83,9 +87,8 @@ const Chat = () => {
   //메시지 보내기
   const sendMessage = () => {
     client.send(
-      "/pub/chat",
+      "/pub/chats",
       JSON.stringify({
-        type: "TALK",
         chatRoomId: 1,
         userEmail: "",
         message: "",
@@ -109,11 +112,12 @@ const Chat = () => {
           >
             {/* <IoIosArrowBack /> */}
           </Button>
-          <h4>참여자 이름</h4>
+          {/* <ChatName>{room[0]?.name}</ChatName> */}
+          <h4>{friendNickname}</h4>
         </StchatName>
         <HorizonLine />
         <Stchatlining>
-          {chatList.map((chat, idx) => {
+          {/* {chatList.map((chat, idx) => {
             if (chat.memberId === users.memberId) {
               return (
                 <div>
@@ -134,7 +138,7 @@ const Chat = () => {
                 </div>
               );
             }
-          })}
+          })} */}
         </Stchatlining>
         <Footer>
           <textarea
@@ -182,6 +186,13 @@ const Stchatbox = styled.div`
   display: flex;
   width: 600px;
   height: 150px;
+`;
+
+const ChatName = styled.h3`
+  display: flex;
+  margin: auto;
+  margin-left: 15px;
+  align-items: center;
 `;
 
 const Footer = styled.div`

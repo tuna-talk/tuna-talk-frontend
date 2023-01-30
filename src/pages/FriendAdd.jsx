@@ -6,24 +6,19 @@ import Button from "../components/button/Button";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { __addFriendThunk } from "../redux/modules/friendinfoSilce";
 import AddData from "../components/AddData";
+import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
+import { StBox } from "../lib/signStyle";
 
 const FriendAdd = () => {
   // 검색ref, 검색성공하면 기본이미지를 서버에서 받자.
-
+  const myEmail = localStorage.getItem("userEmail");
   const dispatch = useDispatch();
   const { friendinfo } = useSelector((state) => state.friendinfo);
   console.log("친구정보", friendinfo);
-  const userEmail = useRef("");
-  // console.log(userEmail);
+  const Email = useRef("");
 
   const [visible, setVisible] = useState(false);
-
-  const findFriend = () => {
-    dispatch(__addFriendThunk(friendinfo.userEmail));
-    setVisible(true);
-  };
 
   return (
     <Layout>
@@ -34,28 +29,28 @@ const FriendAdd = () => {
             <h2>친구추가</h2>
             <h3>id로 추가하기</h3>
             <HorizonLine />
-            <form onSubmit={findFriend}>
-              <input
-                ref={userEmail}
-                type="text"
-                placeholder="친구 카카오톡 ID"
-              />
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const userEmail = Email.current.value;
+                console.log(userEmail);
+                dispatch(__searchFriendThunk({ myEmail, userEmail }));
+                setVisible(true);
+              }}
+            >
+              <input ref={Email} type="text" placeholder="친구 카카오톡 ID" />
               <Button size="h" bc="#f70202" padding="0px 0px 20px 0px">
                 검색
               </Button>
             </form>
-            {visible && (
-              <div>
-                {friendinfo.map((props) => (
-                  <AddData
-                    key={props.userEmail}
-                    userPic={props.userImage}
-                    userName={props.userNickname}
-                  />
-                ))}
-              </div>
-            )}
           </BoxText>
+          {visible && (
+            <Stbox>
+              {friendinfo.map((props) => (
+                <AddData key={props.userId} userName={props.userNickname} />
+              ))}
+            </Stbox>
+          )}
         </Container>
       </div>
     </Layout>
@@ -88,10 +83,12 @@ const BoxText = styled.div`
   opacity: 0.3;
   width: 300px;
   height: 500px;
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+`;
+
+const Stbox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 350px 0px;
 `;

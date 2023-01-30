@@ -3,13 +3,18 @@ import Button from "./button/Button";
 import styled from "styled-components";
 import { __removeChatListThunk } from "../redux/modules/chatSlice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { __pulsFriendThunk } from "../redux/modules/friendInfoSlice";
 
 const AddData = (props) => {
-  console.log(props);
+  const myEmail = localStorage.getItem("userEmail");
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const addFriend = () => {
     navigate("/friendsList");
   };
+  const friendEmail = [props.friendEmail];
 
   return (
     <Stform onSubmit={addFriend}>
@@ -17,7 +22,7 @@ const AddData = (props) => {
         <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
       </ViewImg>
       <NickName>
-        <h4>dbwj{props.userName}</h4>
+        <h4>{props.friendNickname}</h4>
       </NickName>
       <Button
         size="m"
@@ -26,6 +31,9 @@ const AddData = (props) => {
         br="10px"
         padding="0px 0px 0px 0px"
         margin="20px 0px 0px 240px"
+        onClick={() => {
+          dispatch(__pulsFriendThunk({ myEmail, friendEmail }));
+        }}
       >
         추가하기
       </Button>
@@ -64,6 +72,6 @@ const NickName = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.3;
+    /* opacity: 0.3; */
   }
 `;

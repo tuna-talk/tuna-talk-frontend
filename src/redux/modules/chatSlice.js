@@ -7,7 +7,7 @@ const initialState = {
       chatRoomId: 1,
       createdAt: "",
       modifiedAt: "",
-      roomName: "",
+      friendNickname: "",
     },
   ],
   error: null,

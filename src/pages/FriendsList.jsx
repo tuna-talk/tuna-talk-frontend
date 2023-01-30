@@ -7,20 +7,22 @@ import Layout from "../components/Layout";
 import AddData from "../components/AddData";
 import { useDispatch, useSelector } from "react-redux";
 import { __getFriendThunk } from "../redux/modules/friendInfoSlice";
+import Button from "../components/button/Button";
+import { useNavigate } from "react-router-dom";
+import FriendZip from "../components/FriendZip";
 
 const FriendsList = () => {
   const userName = localStorage.getItem("userNickname");
-  const userimage = localStorage.getItem("userImage");
-  console.log(userimage);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // useEffect(() => {
   //   dispatch(__getFriendThunk(userEmail));
   // }, [dispatch]);
-  console.log();
 
-  const { isLoading, friendinfo, error } = useSelector(
+  const { isLoading, error, friendinfo } = useSelector(
     (state) => state.friendinfo
   );
+
   if (isLoading) {
     return <div> 로딩중 .... </div>;
   }
@@ -41,6 +43,17 @@ const FriendsList = () => {
               <h4>{userName}</h4>
             </Stmy>
             <HorizonLine />
+            <Friendbox>
+              <Friendbox>
+                {friendinfo.map((props) => (
+                  <FriendZip
+                    key={props?.id}
+                    friendNickname={props?.friendNickname}
+                    friendEmail={props?.friendEmail}
+                  />
+                ))}
+              </Friendbox>
+            </Friendbox>
           </BoxText>
         </Container>
       </div>
@@ -98,4 +111,12 @@ const Stmy = styled.div`
   h4 {
     padding: 0px 10px 0px 10px;
   }
+`;
+
+const Friendbox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 350px 0px;
 `;

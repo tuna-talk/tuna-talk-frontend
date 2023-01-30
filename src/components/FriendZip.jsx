@@ -3,31 +3,35 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "./button/Button";
 import styled from "styled-components";
-import { __removeChatListThunk } from "../redux/modules/chatSlice";
+import { __removeFriendThunk } from "../redux/modules/friendInfoSlice";
 
-const ChatRoom = (props) => {
+const FriendZip = (props) => {
+  console.log("친구 추가 프롭스", props);
+  const myEmail = localStorage.getItem("userEmail");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const remove = () => {
-    dispatch(__removeChatListThunk(props.id));
+  const friendEmail = [props.friendEmail];
+  const removeFriend = () => {
+    dispatch(__removeFriendThunk({ myEmail, friendEmail }));
   };
-
   return (
-    <div
-      onClick={() => {
-        navigate(`/chat/${props.friendNickname}`);
-      }}
-    >
+    <div>
       <Roomarr>
-        <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
-        <h2>{props.roomName}</h2>
-        <h4>{props.message}</h4>
+        <img
+          src={process.env.PUBLIC_URL + "/basic.png"}
+          alt="로고"
+          onClick={() => {
+            navigate(`/chat/${props?.friendNickname}`);
+          }}
+        />
+        <h4>{props?.friendNickname}</h4>
         <Button
           size="m"
           margin="0px 0px 100px 350px"
           bc="#007bf7"
+          hoverBc="#000"
           onClick={() => {
-            return remove();
+            return removeFriend();
           }}
         >
           삭제하기
@@ -36,7 +40,9 @@ const ChatRoom = (props) => {
     </div>
   );
 };
-export default ChatRoom;
+
+export default FriendZip;
+
 const Roomarr = styled.div`
   display: flex;
   width: 500px;
@@ -62,6 +68,6 @@ const Roomarr = styled.div`
     margin: 0px 0px 0px 70px;
   }
   h4 {
-    padding: 0px 260px 0px 0px;
+    margin-left: 70px;
   }
 `;

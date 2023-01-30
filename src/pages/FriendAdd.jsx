@@ -8,15 +8,15 @@ import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
 import AddData from "../components/AddData";
-import { __searchFriendThunk } from "../redux/modules/friendInfoSlice";
 import { StBox } from "../lib/signStyle";
 
 const FriendAdd = () => {
   // 검색ref, 검색성공하면 기본이미지를 서버에서 받자.
   const myEmail = localStorage.getItem("userEmail");
   const dispatch = useDispatch();
+
   const { friendinfo } = useSelector((state) => state.friendinfo);
-  console.log("친구정보", friendinfo);
+
   const Email = useRef("");
 
   const [visible, setVisible] = useState(false);
@@ -34,7 +34,7 @@ const FriendAdd = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 const userEmail = Email.current.value;
-                console.log(userEmail);
+
                 dispatch(__searchFriendThunk({ myEmail, userEmail }));
                 setVisible(true);
               }}
@@ -48,7 +48,11 @@ const FriendAdd = () => {
           {visible && (
             <Stbox>
               {friendinfo.map((props) => (
-                <AddData key={props.userId} userName={props.userNickname} />
+                <AddData
+                  key={props.id}
+                  friendEmail={props.friendEmail}
+                  friendNickname={props.friendNickname}
+                />
               ))}
             </Stbox>
           )}

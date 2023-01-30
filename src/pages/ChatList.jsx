@@ -33,8 +33,8 @@ const ChatList = () => {
           <BoxText>
             {chatcollect.map((props) => (
               <ChatRoom
-                key={props.chatRoomId}
-                id={props.chatRoomId}
+                key={props.friendNickname}
+                id={props.friendNickname}
                 roomName={props.roomName}
                 message={props.lastMessage}
               />

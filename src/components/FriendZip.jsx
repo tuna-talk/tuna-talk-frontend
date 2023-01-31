@@ -14,16 +14,17 @@ const FriendZip = (props) => {
   const removeFriend = () => {
     dispatch(__removeFriendThunk({ myEmail, friendEmail }));
   };
+  const test = async () => {
+    await dispatch(__postChatopenThunk(friendEmail));
+    navigate(`/chat/${props?.friendNickname}`);
+  };
   return (
     <div>
       <Roomarr>
         <img
           src={process.env.PUBLIC_URL + "/basic.png"}
           alt="로고"
-          onClick={() => {
-            navigate(`/chat/${props?.friendNickname}`);
-            dispatch(__postChatopenThunk(friendEmail));
-          }}
+          onClick={test}
         />
         <h4>{props?.friendNickname}</h4>
         <Button

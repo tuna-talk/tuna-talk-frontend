@@ -26,12 +26,13 @@ export const __postChatopenThunk = createAsyncThunk(
   "CHAT_OPEN",
   async (payload, thunkAPI) => {
     try {
+      console.log(1111, payload);
       const friendEmail = payload[0];
       const Request = await axiosInstance.post("/chats", {
         config,
         friendEmail,
       });
-
+      console.log(1234, Request);
       return thunkAPI.fulfillWithValue(Request.data);
     } catch (e) {
       return console.log(e);
@@ -66,6 +67,7 @@ export const __removeChatListThunk = createAsyncThunk(
       return thunkAPI.fulfillWithValue(payload);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);
+      // return console.log(e)
     }
   }
 );

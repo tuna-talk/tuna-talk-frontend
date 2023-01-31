@@ -2,12 +2,13 @@ import styled from "styled-components";
 import HorizonLine from "../components/horizontal/HorizonLine";
 import Layout from "../components/Layout";
 import Button from "../components/button/Button";
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { getChatRoom, getMessage } from "../redux/modules/socketSlice";
+import ChatRoom from "../components/ChatRoom";
 // import {
 //   addMessage,
 //   getMessage,
@@ -15,32 +16,34 @@ import { getChatRoom, getMessage } from "../redux/modules/socketSlice";
 // } from "../redux/modules/socketSlice";
 
 const Chat = () => {
+  const myEmail = localStorage.getItem("userEmail");
+  const chatRoomId = useSelector((state) => state.friendinfo);
+  console.log(chatRoomId);
+  const chatRef = useRef("");
+
   const navigate = useNavigate();
   const { friendNickname } = useParams();
   const dispatch = useDispatch();
-  console.log(friendNickname);
+  // console.log(friendNickname);
 
   const [message, setMessage] = useState("");
 
   const sock = new SockJS("/ws-stomp");
   const client = Stomp.over(sock);
 
-  const headers = {
+  const config = {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
   };
 
-  // const chatList = useSelector((state) => state.chat.chat);
+  // const myEmail = localStorage.getItem("userEmail");
+  const me = localStorage.getItem("userNickname");
+  console.log(me);
+  const you = useSelector((state) => state.friendinfo.friendNickname);
+  console.log("you", you);
   // const users = useSelector((state) => state.chat.users);
   // const chatRoom = useSelector((state) => state.chat.chatRoom);
-
-  useEffect(() => {
-    onConneted();
-    return () => {
-      onConneted();
-    };
-  }, []);
 
   // 방정보 가져오기
   useEffect(() => {
@@ -60,41 +63,34 @@ const Chat = () => {
     }
   };
 
-  // // 채팅방 이름
-  // const room = chatRoom.filter((x) => x.id === id);
+  useEffect(() => {
+    // 소켓 연결
+    client.connect(config, () => {
+      // 채팅방 구독
+      client.subscribe(
+        `/sub/chats/${chatRoomId}`,
+        (res) => {
+          let newMessage = JSON.parse(res.body);
+          // dispatch(subMessage(newMessage));
+        },
+        config
+      );
+    });
+  }, []);
 
-  //연결&구독 // 방입장
-  function onConneted() {
-    //useEffect가 실행되면 onConneted가 호출되고
-    try {
-      // sock이라면 url에대해 구독을 해야만 상대방에게 메시지를 보낼 수 있고,
-      // 우리가 사용하는 socketjs에서는 채팅의 ip를 파악해서 ip가 맞으면 채팅방 입장이 가능하다.
-      client.connect(headers, () => {
-        // 소켓서버를 호출하고 header에 토큰을 확인한다
-
-        client.subscribe(
-          // `/sub/chats/${chatRoomId}`,
-          (data) => {
-            const newMessage = JSON.parse(data.body); //JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성
-            // dispatch(addMessage(newMessage));
-          },
-          headers
-        );
-      });
-    } catch (error) {}
-  }
-
-  //메시지 보내기
-  const sendMessage = () => {
-    client.send(
-      "/pub/chats",
-      JSON.stringify({
-        chatRoomId: 1,
-        userEmail: "",
-        message: "",
-      }),
-      setMessage("")
-    );
+  // 채팅 전송
+  const myChat = () => {
+    const message = chatRef.current.value;
+    if (message === "") {
+      return;
+    }
+    const masData = {
+      chatRoomId: 1,
+      userEmail: myEmail,
+      message: message,
+    };
+    client.send(`/pub/chats`, JSON.stringify(masData));
+    chatRef.current.value = null;
   };
 
   return (
@@ -115,7 +111,7 @@ const Chat = () => {
           {/* <ChatName>{room[0]?.name}</ChatName> */}
           <h4>{friendNickname}</h4>
         </StchatName>
-        <HorizonLine />
+
         <Stchatlining>
           {/* {chatList.map((chat, idx) => {
             if (chat.memberId === users.memberId) {
@@ -141,13 +137,8 @@ const Chat = () => {
           })} */}
         </Stchatlining>
         <Footer>
-          <textarea
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleEnterPress}
-          />
-          <Button onClick={sendMessage}>전송</Button>
+          <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
+          <Button onClick={myChat}>전송</Button>
         </Footer>
       </Container>
     </Layout>
@@ -158,6 +149,7 @@ export default Chat;
 const Container = styled.div`
   width: 600px;
   height: 900px;
+  border-radius: 10px;
   background-color: #c2c1c1;
   display: flex;
   flex-direction: column;
@@ -182,25 +174,15 @@ const Stchatlining = styled.div`
   height: 655px;
 `;
 
-const Stchatbox = styled.div`
-  display: flex;
-  width: 600px;
-  height: 150px;
-`;
-
-const ChatName = styled.h3`
-  display: flex;
-  margin: auto;
-  margin-left: 15px;
-  align-items: center;
-`;
-
 const Footer = styled.div`
   display: flex;
   flex-direction: row;
   background-color: #eeeeee;
+  margin: auto;
+  margin-top: 20px;
   textarea {
-    width: 600px;
-    height: 150px;
+    width: 495px;
+    height: 170px;
+    border-radius: 10px;
   }
 `;

@@ -25,9 +25,11 @@ const config = {
 // 친구 GET요청
 export const __getFriendThunk = createAsyncThunk(
   "GET_CHATS",
-  async (userEmail, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const Request = await axiosInstance.get(`/friend/${userEmail}`, config);
+      // const userEmail = myEmail;
+      const Request = await axiosInstance.get("/friend/", config);
+
       return thunkAPI.fulfillWithValue(Request.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);

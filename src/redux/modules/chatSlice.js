@@ -8,6 +8,7 @@ const initialState = {
       createdAt: "",
       modifiedAt: "",
       friendNickname: "",
+      message: "",
     },
   ],
   error: null,
@@ -19,6 +20,24 @@ const config = {
     Authorization: localStorage.getItem("token"),
   },
 };
+
+// 채팅방 생성 post
+export const __postChatopenThunk = createAsyncThunk(
+  "CHAT_OPEN",
+  async (payload, thunkAPI) => {
+    try {
+      const friendEmail = payload[0];
+      const Request = await axiosInstance.post("/chats", {
+        config,
+        friendEmail,
+      });
+
+      return thunkAPI.fulfillWithValue(Request.data);
+    } catch (e) {
+      return console.log(e);
+    }
+  }
+);
 
 // 전체 채팅 GET요청
 export const __getChatListThunk = createAsyncThunk(
@@ -38,7 +57,12 @@ export const __removeChatListThunk = createAsyncThunk(
   "REMOVE_CHAT",
   async (payload, thunkAPI) => {
     try {
-      axiosInstance.delete(`/chats/${payload}`, config);
+      const chatRoomId = payload;
+      console.log(1111, chatRoomId);
+      const Request = axiosInstance.delete(`/chats/${chatRoomId}`, config);
+      if (Request.status === 200) {
+        thunkAPI.dispatch(__getChatListThunk());
+      }
       return thunkAPI.fulfillWithValue(payload);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);
@@ -51,9 +75,12 @@ export const chatSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [__postChatopenThunk.fulfilled]: (state, action) => {
+      state.chatcollect = action.payload;
+    },
     [__getChatListThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chatcollect = action.payload;
+      state.chatcollect = [action.payload];
     },
     [__getChatListThunk.rejected]: (state, action) => {
       state.isLoading = false;
@@ -62,12 +89,12 @@ export const chatSlice = createSlice({
     [__getChatListThunk.pending]: (state) => {
       state.isLoading = true;
     },
-    [__removeChatListThunk.fulfilled]: (state, action) => {
-      const target = state.chatcollect.findIndex(
-        (chatcollect) => chatcollect.chatRoomId === action.payload
-      );
-      state.chatcollect.splice(target, 1);
-    },
+    // [__removeChatListThunk.fulfilled]: (state, action) => {
+    //   const target = state.chatcollect.findIndex(
+    //     (chatcollect) => chatcollect.friendNickname === action.payload
+    //   );
+    //   state.chatcollect.splice(target, 1);
+    // },
   },
 });
 export default chatSlice.reducer;

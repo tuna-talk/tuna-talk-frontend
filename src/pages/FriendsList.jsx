@@ -12,12 +12,14 @@ import { useNavigate } from "react-router-dom";
 import FriendZip from "../components/FriendZip";
 
 const FriendsList = () => {
+  const myEmail = localStorage.getItem("userEmail");
   const userName = localStorage.getItem("userNickname");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   dispatch(__getFriendThunk(userEmail));
-  // }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(__getFriendThunk());
+  }, [dispatch]);
 
   const { isLoading, error, friendinfo } = useSelector(
     (state) => state.friendinfo
@@ -27,7 +29,7 @@ const FriendsList = () => {
     return <div> 로딩중 .... </div>;
   }
   if (error) return <div>알수 없는 에러가 발생했습니다.</div>;
-
+  // const userEmail =
   return (
     <Layout>
       <Navbar />
@@ -87,7 +89,7 @@ const BoxText = styled.div`
 const ViewImg = styled.div`
   width: 50px;
   height: 50px;
-  border: 1px solid blueviolet;
+
   display: flex;
 
   img {
@@ -101,6 +103,8 @@ const ViewImg = styled.div`
     object-fit: cover;
   }
 `;
+
+const Stimg = styled.image``;
 
 const Stmy = styled.div`
   display: flex;

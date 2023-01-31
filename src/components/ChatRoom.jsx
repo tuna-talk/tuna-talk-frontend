@@ -6,32 +6,33 @@ import styled from "styled-components";
 import { __removeChatListThunk } from "../redux/modules/chatSlice";
 
 const ChatRoom = (props) => {
-  console.log("채팅룸", props);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const remove = () => {
-    dispatch(__removeChatListThunk(props.id));
+    dispatch(__removeChatListThunk(props.ChatRoomId));
   };
 
   return (
-    <div
-      onClick={() => {
-        navigate(`/chat/${props.friendNickname}`);
-      }}
-    >
+    <div>
       <Roomarr>
-        <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
-        <h2>{props.roomName}</h2>
+        <img
+          src={process.env.PUBLIC_URL + "/basic.png"}
+          alt="로고"
+          onClick={() => {
+            navigate(`/chat/${props.id}`);
+          }}
+        />
+        <h2>{props.id}</h2>
         <h4>{props.message}</h4>
         <Button
           size="m"
           margin="0px 0px 100px 350px"
-          bc="#007bf7"
+          bc="transparent"
           onClick={() => {
             return remove();
           }}
         >
-          삭제하기
+          <img src={process.env.PUBLIC_URL + "/remove.png"} alt="로고" />
         </Button>
       </Roomarr>
     </div>
@@ -46,10 +47,9 @@ const Roomarr = styled.div`
   align-content: center;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px 0px 0px 0px;
+
   img {
     display: flex;
-    border: 1px solid blueviolet;
     justify-content: center;
     align-items: center;
     width: 50px;
@@ -57,7 +57,8 @@ const Roomarr = styled.div`
     border-radius: 5%;
     position: absolute;
     object-fit: cover;
-    margin: 0px 0px 110px 0px;
+    padding-left: 30px;
+    padding-bottom: 50px;
   }
   h2 {
     margin: 0px 0px 0px 70px;

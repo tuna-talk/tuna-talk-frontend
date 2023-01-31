@@ -36,7 +36,7 @@ const SignIn = () => {
     <>
       <SignLayout>
         <StWrap onSubmit={onLogin}>
-          <h2>logo</h2>
+          <img src={process.env.PUBLIC_URL + "/logotalk.png"} alt="로고" />
           <StForm>
             <StInput
               type="text"
@@ -77,4 +77,7 @@ const StWrap = styled.section`
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  img {
+    margin-bottom: 30px;
+  }
 `;

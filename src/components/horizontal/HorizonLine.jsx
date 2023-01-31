@@ -8,7 +8,7 @@ const HorizonLine = ({ text }) => {
         textAlign: "center",
         borderBottom: "1px solid #000",
         lineHeight: "0.1em",
-        margin: "10px 0 20px",
+        margin: "10px 20px 20px 0px",
       }}
     >
       <span style={{ background: "transparent", padding: "0 10px" }}>

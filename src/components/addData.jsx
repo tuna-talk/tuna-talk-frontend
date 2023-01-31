@@ -51,7 +51,6 @@ const ViewImg = styled.div`
   margin: 0px 0px 0px 130px;
   width: 50px;
   height: 50px;
-  border: 1px solid red;
   display: flex;
   img {
     display: flex;

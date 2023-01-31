@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "./button/Button";
 import styled from "styled-components";
 import { __removeFriendThunk } from "../redux/modules/friendInfoSlice";
+import { __postChatopenThunk } from "../redux/modules/chatSlice";
 
 const FriendZip = (props) => {
   const myEmail = localStorage.getItem("userEmail");
@@ -21,19 +22,20 @@ const FriendZip = (props) => {
           alt="로고"
           onClick={() => {
             navigate(`/chat/${props?.friendNickname}`);
+            dispatch(__postChatopenThunk(friendEmail));
           }}
         />
         <h4>{props?.friendNickname}</h4>
         <Button
           size="m"
           margin="0px 0px 100px 350px"
-          bc="#007bf7"
+          bc="transparent"
           hoverBc="#000"
           onClick={() => {
             return removeFriend();
           }}
         >
-          삭제하기
+          <img src={process.env.PUBLIC_URL + "/remove.png"} alt="로고" />
         </Button>
       </Roomarr>
     </div>
@@ -53,7 +55,6 @@ const Roomarr = styled.div`
   padding: 20px 0px 0px 0px;
   img {
     display: flex;
-    border: 1px solid blueviolet;
     justify-content: center;
     align-items: center;
     width: 50px;
@@ -61,12 +62,14 @@ const Roomarr = styled.div`
     border-radius: 5%;
     position: absolute;
     object-fit: cover;
-    margin: 0px 0px 110px 0px;
+    padding-left: 30px;
+    padding-bottom: 5px;
   }
   h2 {
     margin: 0px 0px 0px 70px;
   }
   h4 {
-    margin-left: 70px;
+    margin-top: 100px;
+    margin-left: 100px;
   }
 `;

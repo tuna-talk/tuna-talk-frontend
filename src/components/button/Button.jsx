@@ -28,6 +28,14 @@ const StyledButton = styled.button`
   }
   padding: ${({ padding }) => padding};
   margin: ${({ margin }) => margin};
+  img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    object-fit: cover;
+  }
+
   ${(props) => {
     if (props.size === "l") {
       return css`

@@ -30,7 +30,7 @@ const FriendAdd = () => {
             <h2>친구추가</h2>
             <h3>id로 추가하기</h3>
             <HorizonLine />
-            <form
+            <StForm
               onSubmit={(e) => {
                 e.preventDefault();
                 const userEmail = Email.current.value;
@@ -40,10 +40,10 @@ const FriendAdd = () => {
               }}
             >
               <input ref={Email} type="text" placeholder="친구 카카오톡 ID" />
-              <Button size="h" bc="#f70202" padding="0px 0px 20px 0px">
-                검색
+              <Button size="h" bc="transparent">
+                <img src={process.env.PUBLIC_URL + "/search.png"} alt="로고" />
               </Button>
-            </form>
+            </StForm>
           </BoxText>
           {visible && (
             <Stbox>
@@ -88,6 +88,7 @@ const BoxText = styled.div`
   opacity: 0.3;
   width: 300px;
   height: 500px;
+  margin-bottom: 50px;
 `;
 
 const Stbox = styled.div`
@@ -96,4 +97,11 @@ const Stbox = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0px 0px 350px 0px;
+`;
+
+const StForm = styled.form`
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;

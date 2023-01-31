@@ -21,7 +21,7 @@ const Header = () => {
           navigate("/friendAdd");
         }}
       >
-        {/* <BsFillPersonPlusFill /> */}
+        <img src={process.env.PUBLIC_URL + "/addfriend.png"} alt="로고" />
       </Button>
     </HearderContainer>
   );
@@ -31,4 +31,8 @@ export default Header;
 
 const HearderContainer = styled.div`
   display: flex;
+  img {
+    width: 50px;
+    height: 50px;
+  }
 `;

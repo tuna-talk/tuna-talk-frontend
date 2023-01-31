@@ -11,12 +11,18 @@ import ChatRoom from "../components/ChatRoom";
 
 const ChatList = () => {
   const dispatch = useDispatch();
-  const { chatcollect, error } = useSelector((state) => state.chatcollect);
 
   useEffect(() => {
     dispatch(__getChatListThunk());
-  }, [dispatch]);
+  }, []);
 
+  const { isLoading, chatcollect, error } = useSelector(
+    (state) => state.chatcollect
+  );
+
+  if (isLoading) {
+    return <div> 로딩중 .... </div>;
+  }
   if (error) return <div>알수 없는 에러가 발생했습니다.</div>;
 
   return (
@@ -31,10 +37,11 @@ const ChatList = () => {
           <BoxText>
             {chatcollect.map((props) => (
               <ChatRoom
-                key={props.friendNickname}
-                id={props.friendNickname}
-                roomName={props.roomName}
-                message={props.lastMessage}
+                key={props?.friendNickname}
+                ChatRoomId={props?.chatRoomId}
+                id={props?.friendNickname}
+                roomName={props?.roomName}
+                message={props?.lastMessage}
               />
             ))}
           </BoxText>

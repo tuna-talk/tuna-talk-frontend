@@ -46,7 +46,10 @@
 
   
   
-클론코딩 미리보기
+클론코딩 
+<details>
+<summary>미리보기</summary>
+<div markdown="1">
 ![클론코딩 로그인화면](https://user-images.githubusercontent.com/119986005/216029232-585c13ee-eac3-4647-9a40-2f068c6ee381.png)
 ![클론코딩 회원가입 화면](https://user-images.githubusercontent.com/119986005/216029244-ea016668-1322-4b1a-9a41-ae8f7dc232c6.png)
 ![클론코딩 친구추가 첫화면](https://user-images.githubusercontent.com/119986005/216029258-81ba3a58-35d3-4ae7-b878-70da21f88b8e.png)
@@ -55,4 +58,4 @@
 ![클론코딩 친구추가 완료후 리스트 화면](https://user-images.githubusercontent.com/119986005/216029297-ef9284ba-e803-40b9-912c-5089f88e25ac.png)
 ![클론코딩 채팅방 화면(실시간 채팅)](https://user-images.githubusercontent.com/119986005/216029330-c7f70f44-c6ea-4f6b-890d-758ea9c1567f.png)
 ![딩클론코 채팅리스트 화면](https://user-images.githubusercontent.com/119986005/216029342-f674c2b2-ee47-4d61-bad7-8345cf62d442.png)
-
+ </details>

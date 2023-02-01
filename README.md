@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=Tuna-Talk&fontSize=90" />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

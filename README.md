@@ -47,7 +47,7 @@
   
   
 클론코딩 미리보기
-  ![클론코딩 로그인화면](https://user-images.githubusercontent.com/119986005/216029232-585c13ee-eac3-4647-9a40-2f068c6ee381.png)
+![클론코딩 로그인화면](https://user-images.githubusercontent.com/119986005/216029232-585c13ee-eac3-4647-9a40-2f068c6ee381.png)
 ![클론코딩 회원가입 화면](https://user-images.githubusercontent.com/119986005/216029244-ea016668-1322-4b1a-9a41-ae8f7dc232c6.png)
 ![클론코딩 친구추가 첫화면](https://user-images.githubusercontent.com/119986005/216029258-81ba3a58-35d3-4ae7-b878-70da21f88b8e.png)
 ![클론코딩 친구추가 화면](https://user-images.githubusercontent.com/119986005/216029268-fed42ed3-71bc-4129-af0a-14f09a5d56c2.png)

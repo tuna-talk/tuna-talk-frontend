@@ -49,7 +49,7 @@
 클론코딩 
 <details>
 <summary>미리보기</summary>
-<div markdown="1">
+<div markdown="8">
 <img src="https://user-images.githubusercontent.com/119986005/216029232-585c13ee-eac3-4647-9a40-2f068c6ee381.png" width="300" height="450")
 <img src="https://user-images.githubusercontent.com/119986005/216029244-ea016668-1322-4b1a-9a41-ae8f7dc232c6.png" width="300" height="450")
 <img src="https://user-images.githubusercontent.com/119986005/216029258-81ba3a58-35d3-4ae7-b878-70da21f88b8e.png" width="300" height="450")

@@ -35,7 +35,7 @@
   정필원
 
 <details>
-<summary>페이지/기능</summary>
+<summary>페이지</summary>
 <div markdown="1">
 
 - 페이지

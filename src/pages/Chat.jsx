@@ -12,8 +12,6 @@ import {
   getMessage,
   subMessage,
 } from "../redux/modules/socketSlice";
-import ChatRoom from "../components/ChatRoom";
-import Messages from "../components/Messages";
 
 // import {
 //   addMessage,
@@ -23,12 +21,13 @@ import Messages from "../components/Messages";
 
 const Chat = () => {
   const myEmail = localStorage.getItem("userEmail");
+  const Myname = localStorage.getItem("userNickname");
   const chatRef = useRef("");
 
   const navigate = useNavigate();
-  const { friendNickname } = useParams();
+  const { chatRoomId } = useParams();
   const dispatch = useDispatch();
-  console.log(friendNickname);
+  console.log(chatRoomId);
 
   const [message, setMessage] = useState("");
 
@@ -39,7 +38,6 @@ const Chat = () => {
     Authorization: localStorage.getItem("token"),
   };
 
-  const me = localStorage.getItem("userNickname");
   const { chatcollect } = useSelector((state) => state.chatcollect);
   console.log(chatcollect);
   const { messages } = useSelector((state) => state.messages);
@@ -79,7 +77,7 @@ const Chat = () => {
             client.subscribe(`/sub/chats/${chatcollect.chatRoomId}`, (res) => {
               console.log(res.body);
               const receive = JSON.parse(res.body);
-              // console.log(receive);
+              console.log(receive);
               dispatch(subMessage(receive));
             });
           },
@@ -118,6 +116,19 @@ const Chat = () => {
   //   </div>
   // ));
 
+  console.log(987, Myname);
+  // console.log(789, userNickname);
+
+  const scrollRef = useRef();
+  console.log(scrollRef);
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }, [messages]);
+
   return (
     <Layout>
       <Container>
@@ -126,31 +137,47 @@ const Chat = () => {
             fs="30px"
             color="#000"
             bc="transparent"
-            hoverC="#868686"
+            hoverC="#fff"
             onClick={() => {
               navigate("/chatList");
             }}
           />
-          <h4>{friendNickname}</h4>
         </StchatName>
 
-        <div>
-          {messages.map((chating) => {
-            return (
-              <Stchatlining>
-                <div key={chating.chatRoomId}>
-                  <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
-                  <span>{chating.userNickname}</span>
-                  <span>{chating.message}</span>
-                </div>
-                :
-                <div>
-                  <img src={process.env.PUBLIC_URL + "/basic.png"} alt="로고" />
-                </div>
-              </Stchatlining>
-            );
-          })}
-        </div>
+        <Down>
+          <Chatdown>
+            <div ref={scrollRef}>
+              {Myname &&
+                messages.map((chating) =>
+                  chating.userNickname === Myname ? (
+                    <SendMessage>
+                      <div>
+                        <span>{chating.message}</span>
+                        <img
+                          src={process.env.PUBLIC_URL + "/basic.png"}
+                          alt="로고"
+                        />
+                      </div>
+                    </SendMessage>
+                  ) : (
+                    <ReceivedMessage>
+                      <div>
+                        <img
+                          src={process.env.PUBLIC_URL + "/basic.png"}
+                          alt="로고"
+                        />
+                        <Dou>
+                          <h4>{chating.userNickname}님</h4>
+                          <span>{chating.message}</span>
+                        </Dou>
+                      </div>
+                    </ReceivedMessage>
+                  )
+                )}
+            </div>
+          </Chatdown>
+        </Down>
+
         <Footer>
           <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
           <Button onClick={myChat}>전송</Button>
@@ -184,31 +211,112 @@ const StchatName = styled.div`
   }
 `;
 
-const Stchatlining = styled.div`
+const Dou = styled.div`
   display: flex;
-  width: 500px;
-  height: 100px;
   flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px 0px 0px 0px;
-  img {
+  line-height: 10px;
+  h4 {
+    margin-top: 10px;
+  }
+`;
+
+const Down = styled.div`
+  /* width: 100%; */
+  /* overflow-y: hidden; */
+  /* height: 100%; */
+  /* padding-bottom: 20px; */
+`;
+
+const Chatdown = styled.div`
+  /* background: #fff; */
+  /* width: 100%; */
+  /* padding: 20px 25px; */
+  /* overflow-y: scroll; */
+  /* height: 100%; */
+`;
+
+const ReceivedMessage = styled.div`
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  div {
     display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+
+  img {
     width: 50px;
     height: 50px;
     border-radius: 5%;
-    position: absolute;
-    object-fit: cover;
-    padding-left: 30px;
-    padding-bottom: 5px;
-  }
-  span {
-    margin-left: 100px;
+    margin-top: 5px;
   }
 `;
+
+const SendMessage = styled.div`
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: right;
+  div {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5%;
+  }
+`;
+
+const ReceivedMessageBox = styled.div`
+  display: inline-block;
+  background: #2f80ed;
+  color: #f2f2f2;
+  max-width: 80%;
+  text-align: left;
+  padding: 10px;
+  margin-right: 20px;
+  border-radius: 22px 0px 22px 22px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5%;
+  }
+  /* span {
+    margin-left: 90px;
+    margin-top: 50px;
+  } */
+`;
+
+// const Stchatlining = styled.div`
+//   display: flex;
+//   width: 500px;
+//   height: 100px;
+//   flex-direction: column;
+//   align-content: center;
+//   justify-content: center;
+//   align-items: flex-start;
+//   padding: 20px 0px 0px 0px;
+//   img {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 5%;
+//     position: absolute;
+//     object-fit: cover;
+//     padding-left: 30px;
+//     padding-bottom: 5px;
+//   }
+//   span {
+//     margin-left: 90px;
+//     margin-top: 50px;
+//   }
+// `;
 
 const Footer = styled.div`
   display: flex;

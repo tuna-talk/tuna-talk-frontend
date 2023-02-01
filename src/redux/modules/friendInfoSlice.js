@@ -60,6 +60,7 @@ export const __pulsFriendThunk = createAsyncThunk(
   "PULS_FRIEND",
   async (payload, thunkAPI) => {
     try {
+      console.log(payload);
       const userEmail = payload.myEmail;
       const friendEmail = payload.friendEmail[0];
       const Request = await axiosInstance.post(`/friend/${userEmail}`, {

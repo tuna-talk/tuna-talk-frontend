@@ -1,7 +1,8 @@
-import Button from "./components/button/Button";
+import Router from "./shared/Router";
+import React from "react";
 
-function App() {
-  return <></>;
-}
+const App = () => {
+  return <Router />;
+};
 
 export default App;
